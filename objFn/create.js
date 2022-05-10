@@ -6,7 +6,7 @@ const create = (product) => {
     const cart = read();
     const key = Object.keys(product)[0];
     if (!cart[key]) {
-      const newCart = [...cart, ...product];
+      const newCart = { ...cart, ...product };
       fs.writeFileSync("./data/cart.json", JSON.stringify(newCart));
       console.log("cart new is: ", newCart);
     } else {
