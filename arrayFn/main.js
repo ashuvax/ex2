@@ -4,22 +4,20 @@ const updateFn = require("./update");
 const deleteFn = require("./delete");
 const args = process.argv.slice(2);
 const operation = args[0];
+const product = args[1];
 
 switch (operation) {
   case "create":
-    const product = args[1];
     createFn(JSON.parse(product));
     break;
   case "read":
     readFn();
     break;
   case "update":
-    const updateproduct = args[1];
-    updateFn(JSON.parse(updateproduct));
+    updateFn(JSON.parse(product));
     break;
   case "delete":
-    const deleteproduct = args[1];
-    deleteFn(deleteproduct);
+    deleteFn(product);
     break;
   default:
     throw new Error(operation + " Invalid operation");

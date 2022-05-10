@@ -5,20 +5,17 @@ const update = (product) => {
   const cart = read();
   const key = Object.keys(product)[0];
 
-  if (
-    cart.filter((item) => Object.keys(item)[0] == Object.keys(product)[0])
-      .length > 0
-  ) {
+  if (cart.some((item) => Object.keys(item)[0] === key)) {
     cart.map((item) =>
-      Object.keys(item)[0] == Object.keys(product)[0]
-        ? (item[Object.keys(product)[0]] = product[Object.keys(product)[0]])
+      Object.keys(item)[0] === key
+        ? (item[Object.keys(product)[0]] = product[key])
         : item
     );
 
     fs.writeFileSync("./data/cart.json", JSON.stringify(cart));
-    console.log("cart is: ", cart);
+    console.log("cart new is: ", cart);
   } else {
-    throw new Error("Product " + key + " not found");
+    throw new Error("Product " + key + " not found in cart");
   }
 };
 module.exports = update;

@@ -3,7 +3,7 @@ const read = require("./read");
 const deleteFn = (product) => {
   if (product) {
     const cart = read();
-    if (cart.filter((item) => Object.keys(item)[0] == product).length > 0) {
+    if (cart.some((item) => Object.keys(item)[0] === product)) {
       const newCart = cart.filter((item) => Object.keys(item)[0] != product);
       fs.writeFileSync("./data/cart.json", JSON.stringify(newCart));
       console.log("cart is: ", newCart);

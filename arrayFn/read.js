@@ -1,6 +1,8 @@
 const fs = require("fs");
 const read = () => {
   const cart = fs.readFileSync("./data/cart.json", "utf8");
-  return JSON.parse(cart);
+  const cartObj = JSON.parse(cart);
+  console.log(cartObj);
+  return cartObj;
 };
 module.exports = read;
